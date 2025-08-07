@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pac-Man Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-title">
+            <h1>KAMAYANI's PAC-MAC</h1>
+        </div>
+        <div class="game-header">
+            <div class="score-container">
+                <span class="label">SCORE</span>
+                <span id="score">0</span>
+            </div>
+            <div class="lives-container">
+                <span class="label">LIVES</span>
+                <div id="lives">
+                    <span class="life">🎮</span>
+                    <span class="life">🎮</span>
+                    <span class="life">🎮</span>
+                </div>
+            </div>
+        </div>
+        
+        <div id="game-board"></div>
+        
+        <div class="game-footer">
+            <div class="controls">
+                <p>Use arrow keys to change Pac-Man's direction</p>
+                <button id="start-button">Start Game</button>
+                <button id="restart-button" style="display: none;">Restart</button>
+            </div>
+        </div>
+        
+        <div id="game-over" class="game-message" style="display: none;">
+            <h2>Game Over!</h2>
+            <p>Final Score: <span id="final-score">0</span></p>
+            <button onclick="restartGame()">Play Again</button>
+        </div>
+        
+        <div id="you-win" class="game-message" style="display: none;">
+            <h2>You Win!</h2>
+            <p>Congratulations! Score: <span id="win-score">0</span></p>
+            <button onclick="restartGame()">Play Again</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

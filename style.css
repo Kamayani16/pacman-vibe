@@ -1,0 +1,292 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #000;
+    color: #ffff00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.game-container {
+    text-align: center;
+    background-color: #000;
+    border: 3px solid #0000ff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px #0000ff;
+}
+
+.game-title {
+    margin-bottom: 15px;
+}
+
+.game-title h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffff00;
+    text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
+    letter-spacing: 3px;
+    margin: 0;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.score-container, .lives-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffff00;
+}
+
+#score {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+#lives {
+    display: flex;
+    gap: 5px;
+}
+
+.life {
+    font-size: 20px;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(19, 20px);
+    grid-template-rows: repeat(21, 20px);
+    gap: 0;
+    background-color: #000040;
+    border: 2px solid #0000ff;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.cell {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.wall {
+    background-color: #0000ff;
+    border: 1px solid #4040ff;
+}
+
+.path {
+    background-color: #000;
+}
+
+.dot {
+    background-color: #000;
+    position: relative;
+}
+
+.dot::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background-color: #ffff00;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pacman {
+    background-color: #000;
+    position: relative;
+    z-index: 10;
+}
+
+.pacman::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle, #ffff00 0%, #ffdd00 70%, #ffaa00 100%);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    clip-path: polygon(100% 0%, 50% 50%, 100% 100%);
+    box-shadow: 0 0 3px rgba(255, 255, 0, 0.8);
+}
+
+.pacman.right::after {
+    clip-path: polygon(100% 0%, 50% 50%, 100% 100%);
+}
+
+.pacman.left::after {
+    clip-path: polygon(0% 0%, 50% 50%, 0% 100%);
+}
+
+.pacman.up::after {
+    clip-path: polygon(0% 0%, 50% 50%, 100% 0%);
+}
+
+.pacman.down::after {
+    clip-path: polygon(0% 100%, 50% 50%, 100% 100%);
+}
+
+.ghost {
+    background-color: #000;
+    position: relative;
+    z-index: 9;
+}
+
+.ghost-red::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle, #ff0000 0%, #dd0000 70%, #aa0000 100%);
+    border-radius: 9px 9px 0 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 87% 100%, 75% 85%, 62% 100%, 50% 85%, 37% 100%, 25% 85%, 12% 100%, 0% 75%);
+    box-shadow: 0 0 3px rgba(255, 0, 0, 0.8);
+}
+
+.ghost-pink::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle, #ff69b4 0%, #ff1493 70%, #dc143c 100%);
+    border-radius: 9px 9px 0 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 87% 100%, 75% 85%, 62% 100%, 50% 85%, 37% 100%, 25% 85%, 12% 100%, 0% 75%);
+    box-shadow: 0 0 3px rgba(255, 105, 180, 0.8);
+}
+
+.ghost-cyan::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle, #00ffff 0%, #00cccc 70%, #008888 100%);
+    border-radius: 9px 9px 0 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 87% 100%, 75% 85%, 62% 100%, 50% 85%, 37% 100%, 25% 85%, 12% 100%, 0% 75%);
+    box-shadow: 0 0 3px rgba(0, 255, 255, 0.8);
+}
+
+.game-footer {
+    margin-top: 20px;
+}
+
+.controls p {
+    margin-bottom: 10px;
+    color: #ffff00;
+}
+
+button {
+    background-color: #0000ff;
+    color: #ffff00;
+    border: 2px solid #ffff00;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'Courier New', monospace;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background-color: #ffff00;
+    color: #0000ff;
+}
+
+.game-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 64, 0.95);
+    border: 3px solid #ffff00;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 0 30px rgba(255, 255, 0, 0.5);
+}
+
+.game-message h2 {
+    color: #ffff00;
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+
+.game-message p {
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+/* Animation for Pac-Man chomping */
+@keyframes chomp {
+    0% { clip-path: polygon(100% 0%, 50% 50%, 100% 100%); }
+    50% { clip-path: polygon(100% 0%, 100% 50%, 100% 100%); }
+    100% { clip-path: polygon(100% 0%, 50% 50%, 100% 100%); }
+}
+
+.pacman.chomping::after {
+    animation: chomp 0.3s infinite;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .game-container {
+        padding: 10px;
+    }
+    
+    #game-board {
+        grid-template-columns: repeat(19, 15px);
+        grid-template-rows: repeat(21, 15px);
+        padding: 5px;
+    }
+    
+    .cell {
+        width: 15px;
+        height: 15px;
+    }
+    
+    .pacman::after, .ghost::after {
+        width: 12px;
+        height: 12px;
+    }
+}
